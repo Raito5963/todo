@@ -80,10 +80,15 @@ export default function TodoPage() {
         orderBy("priority", "asc")
       );
       const unsubscribe = onSnapshot(q, (snapshot) => {
-        const todosData = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        })) as Todo[];
+        const todosData = snapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            ...data,
+            priority: typeof data.priority === 'number' ? data.priority : 0,
+          };
+        }) as Todo[];
+        todosData.sort((a, b) => a.priority - b.priority);
         setTodos(todosData);
       });
       return () => unsubscribe();
