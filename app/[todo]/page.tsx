@@ -9,7 +9,6 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListItemSecondaryAction,
   IconButton,
   Checkbox,
   Paper,
@@ -203,7 +202,7 @@ export default function TodoPage() {
               label="Please enter a new todo"
               value={newTodo}
               onChange={(e) => setNewTodo(e.target.value)}
-              onKeyPress={(e) => e.key === "Enter" && handleAddTodo()}
+              onKeyDown={(e) => e.key === "Enter" && handleAddTodo()}
             />
             <Button
               variant="contained"
@@ -263,7 +262,7 @@ export default function TodoPage() {
                                 opacity: todo.completed ? 0.6 : 1,
                               }}
                             />
-                            <ListItemSecondaryAction>
+                            <Box sx={{ marginLeft: 'auto' }}>
                               <IconButton
                                 edge="end"
                                 aria-label="delete"
@@ -272,7 +271,7 @@ export default function TodoPage() {
                               >
                                 <Delete />
                               </IconButton>
-                            </ListItemSecondaryAction>
+                            </Box>
                           </ListItem>
                         )}
                       </Draggable>
