@@ -234,6 +234,7 @@ export default function TodoPage() {
                           <ListItem
                             ref={provided.innerRef}
                             {...provided.draggableProps}
+                            component="div"
                             divider
                             sx={{ background: snapshot.isDragging ? '#f0f0f0' : 'inherit', display: 'flex', alignItems: 'center' }}
                           >
